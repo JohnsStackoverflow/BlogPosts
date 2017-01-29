@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Crud.Models.PostModel>
+@{
+    ViewBag.Title = "Index";
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PostID)
+        </th>
+        <th>
+            <h5><b>Image</b></h5>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Heading)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-right">@item.PostID</td>
+            <td>
+ 
+                <img class="img-thumbnail" width="150" height="150" src="~/Img//@item.ImagePath" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Heading)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagePath)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+            </td>
+        </tr>
+    }
+
+</table>
