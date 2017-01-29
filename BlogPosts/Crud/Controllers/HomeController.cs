@@ -27,27 +27,27 @@ namespace Crud.Controllers
         {
             return View(repository.Posts);
         }
-
-        public ViewResult Edit()
-        {
-            return View();
-        }
-
         public ViewResult Create()
         {
-            return View("Create", new PostModel());
+            return View("Edit", new PostModel());
 
         }
 
+        public ViewResult Edit(int PostID)
+        {
+            PostModel editedItem = repository.Posts
+            .FirstOrDefault(p => p.PostID == PostID);
+            return View(editedItem);
+        }
         [HttpPost]
-        public ActionResult Create(PostModel Post, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Edit(PostModel Post, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
                 foreach (var file in files)
                 {
                     PostModel post = new PostModel();
-                    if (file.ContentLength > 0)
+                    if (file != null && file.ContentLength > 0)
                     {
                         string displayName = file.FileName;
                         string fileExtension = Path.GetExtension(displayName);
@@ -62,6 +62,17 @@ namespace Crud.Controllers
                     repository.Save(post);
 
                 }
+            }
+            return RedirectToAction("display");
+        }
+        
+        [HttpPost]
+        public ActionResult DeletePosts(int PostID)
+        {
+            PostModel deletePost = repository.DeletePosts(PostID);
+            if (deletePost != null)
+            {
+                TempData["message"] = string.Format("{0} was deleted", deletePost.Heading);
             }
             return RedirectToAction("display");
         }

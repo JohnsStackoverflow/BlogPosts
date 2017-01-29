@@ -11,6 +11,7 @@ namespace Crud.Abstract
  
         IEnumerable<PostModel> Posts { get; }
         void Save(PostModel posts);
+        PostModel DeletePosts(int PostID);
 
     }
 }

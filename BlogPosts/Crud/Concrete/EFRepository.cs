@@ -28,14 +28,24 @@ namespace Crud.Concrete
                 PostModel dbEntry = context.Posts.Find(Post.PostID);
                 if (dbEntry != null)
                 {
-                    dbEntry.ImagePath = Post.ImagePath;
                     dbEntry.Heading = Post.Heading;
-                    //dbEntry.PostBody = Image.PostBody;
-                    //dbEntry.PostDate = Image.PostDate;
-
+                    dbEntry.PostBody = Post.PostBody;
+                    dbEntry.ImageDisplayName = Post.ImageDisplayName;
+                    dbEntry.ImagePath = Post.ImagePath;
                 }
             }
             context.SaveChanges();
+        }
+
+        public PostModel DeletePosts(int PostID)
+        {
+            PostModel dbEntry = context.Posts.Find(PostID);
+            if (dbEntry != null)
+            {
+                context.Posts.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
         }
     }
 }
