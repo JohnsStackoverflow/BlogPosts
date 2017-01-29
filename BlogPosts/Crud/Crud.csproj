@@ -255,7 +255,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Display.cshtml" />
-    <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\PublicPostDisplay.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
   </ItemGroup>

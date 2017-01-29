@@ -8,11 +8,22 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <fieldset>
+        <div class="editor-field">
+            @Html.LabelFor(model => model.Heading)
+            @Html.ValidationMessageFor(model => model.Heading)
+            @Html.TextBoxFor(model => model.Heading)
+     
+        </div>
+        <div>
+            @Html.LabelFor(model => model.PostBody)
+            @Html.ValidationMessageFor(model => model.PostBody)
+            @Html.TextBoxFor(model => model.PostBody)
+  
+        </div>
         <div class="editor-label">
             @*Temporary way to upload*@
             @Html.LabelFor(model => model.ImagePath)
             @Html.TextBoxFor(model => model.ImagePath, new { type = "file", multiple = "multiple", NAME = "files" })
-            @Html.ValidationMessageFor(model => model.ImagePath)
         </div>
         <div class="editor-label">
             @*Future Upload links*@
@@ -20,16 +31,7 @@
                 @Html.TextBoxFor(model => model.Images, new { type = "file", multiple = "multiple" })
                 @Html.ValidationMessageFor(model => model.Images)*@
         </div>
-        <div class="editor-field">
-            @Html.LabelFor(model => model.Heading)
-            @Html.TextBoxFor(model => model.Heading)
-            @Html.ValidationMessageFor(model => model.Heading)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.PostBody)
-            @Html.TextBoxFor(model => model.PostBody)
-            @Html.ValidationMessageFor(model => model.PostBody)
-        </div>
+
         <p><input type="submit" value="Create" /></p>
     </fieldset>
 }
