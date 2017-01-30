@@ -82,8 +82,7 @@ namespace Crud.Controllers
                     string fileExtension = Path.GetExtension(displayName);
                     string fileName = string.Format("{0}.{1}", Guid.NewGuid(), fileExtension);
                     string path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                   // model.Images.SaveAs(path);
-                   // file.SaveAs(path);
+                    file.SaveAs(path);
                     ImageModel image = new ImageModel()
                     {
                         Path = path,
