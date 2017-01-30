@@ -9,6 +9,10 @@ namespace Crud.Models
 {
     public partial class PostModel
     {
+        public PostModel()
+        {
+            Images = new List<ImageModel>();
+        }
         [Key]
         [HiddenInput(DisplayValue = false)]
         public int ID { get; set; }

@@ -1,19 +1,7 @@
-﻿@model IEnumerable<Crud.Models.PostVM>
+﻿@model Crud.Models.PostModel
 @{
     ViewBag.Title = "PublicPostDisplay";
 }
 
-<h2>PublicPostDisplay</h2>
+@Html.Partial("EditorTemplates/ImageVM")
 
-@foreach (var item in Model)
-{
-    <div>
-        @Html.DisplayFor(modelItem => item.Heading)
-    </div>
-    <div>
-        @Html.DisplayFor(modelItem => item.Body)
-    </div>
-    <div>
-        <img class="img-thumbnail" width="150" height="150" src="/Img/@item.Images" />
-    </div>
-}
