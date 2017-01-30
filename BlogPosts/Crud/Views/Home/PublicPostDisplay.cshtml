@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Crud.Models.PostModel>
+﻿@model IEnumerable<Crud.Models.PostVM>
 @{
     ViewBag.Title = "PublicPostDisplay";
 }
@@ -11,9 +11,9 @@
         @Html.DisplayFor(modelItem => item.Heading)
     </div>
     <div>
-        @Html.DisplayFor(modelItem => item.PostBody)
+        @Html.DisplayFor(modelItem => item.Body)
     </div>
     <div>
-        <img class="img-thumbnail" width="150" height="150" src="/Img/@item.ImagePath" />
+        <img class="img-thumbnail" width="150" height="150" src="/Img/@item.Images" />
     </div>
 }

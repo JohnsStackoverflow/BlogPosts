@@ -1,40 +1,31 @@
-﻿@model Crud.Models.PostModel
+﻿@model Crud.Models.PostVM
 @{
     ViewBag.Title = "Create";
 }
 <h2>Create</h2>
-@using (Html.BeginForm("Edit", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-    <fieldset>
-        <div class="editor-field">
-            @Html.LabelFor(model => model.Heading)
-            @Html.ValidationMessageFor(model => model.Heading)
-            @Html.TextBoxFor(model => model.Heading)
-     
-        </div>
-        <div>
-            @Html.LabelFor(model => model.PostBody)
-            @Html.ValidationMessageFor(model => model.PostBody)
-            @Html.TextBoxFor(model => model.PostBody)
-  
-        </div>
-        <div class="editor-label">
-            @*Temporary way to upload*@
-            @Html.LabelFor(model => model.ImagePath)
-            @Html.TextBoxFor(model => model.ImagePath, new { type = "file", multiple = "multiple", NAME = "files" })
-        </div>
-        <div class="editor-label">
-            @*Future Upload links*@
-            @*@Html.LabelFor(model => model.Images)
-                @Html.TextBoxFor(model => model.Images, new { type = "file", multiple = "multiple" })
-                @Html.ValidationMessageFor(model => model.Images)*@
-        </div>
 
-        <p><input type="submit" value="Create" /></p>
-    </fieldset>
-}
+    @using (Html.BeginForm("Edit", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        @Html.LabelFor(m => m.Heading)
+        @Html.TextBoxFor(model => model.Heading)
+        @Html.ValidationMessageFor(model => model.Heading)
+
+        @Html.LabelFor(model => model.Body)
+        @Html.TextAreaFor(model => model.Body)
+        @Html.ValidationMessageFor(model => model.Body)
+
+        @Html.EditorFor(m => m.Images)
+
+        @Html.LabelFor(model => model.Files)
+        @Html.TextBoxFor(model => model.Files, new { type = "file", multiple = "multiple" })
+        @Html.ValidationMessageFor(model => model.Body)
+
+        <input type="submit" value="Save" />
+    }
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

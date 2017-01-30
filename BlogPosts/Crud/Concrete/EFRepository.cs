@@ -22,17 +22,17 @@ namespace Crud.Concrete
         {
             try
             {
-                if (Post.PostID == 0)
+                if (Post.ID == 0)
                 {
                     context.Posts.Add(Post);
                 }
                 else
                 {
-                    PostModel dbEntry = context.Posts.Find(Post.PostID);
+                    PostModel dbEntry = context.Posts.Find(Post.ID);
                     if (dbEntry != null)
                     {
                         dbEntry.Heading = Post.Heading;
-                        dbEntry.PostBody = Post.PostBody;
+                        dbEntry.Body = Post.Body;
                 
                     }
                 }
@@ -57,9 +57,9 @@ namespace Crud.Concrete
             }
         }
 
-        public PostModel DeletePosts(int PostID)
+        public PostModel DeletePosts(int ID)
         {
-            PostModel dbEntry = context.Posts.Find(PostID);
+            PostModel dbEntry = context.Posts.Find(ID);
             if (dbEntry != null)
             {
                 context.Posts.Remove(dbEntry);

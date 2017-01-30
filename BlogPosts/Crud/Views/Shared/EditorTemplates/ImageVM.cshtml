@@ -1,0 +1,12 @@
+﻿@model Crud.Models.ImageVM
+@{
+    ViewBag.Title = "Index";
+}
+<div class="image">
+    @Html.HiddenFor(m => m.ID)
+    @Html.HiddenFor(m => m.Path)
+    @Html.HiddenFor(m => m.DisplayName)
+    @Html.DisplayFor(m => m.DisplayName)
+    @Html.CheckBoxFor(m => m.IsDeleted)
+    <button type="button" class="deleteimage">Delete</button>
+</div>
