@@ -23,6 +23,12 @@
         @Html.TextBoxFor(model => model.Files, new { type = "file", multiple = "multiple" })
         @Html.ValidationMessageFor(model => model.Body)
 
+
+
+        @Html.LabelFor(model => model.Date)
+        @Html.TextBoxFor(model => model.Date, new { type = "date" })
+
+
         <input type="submit" value="Save" />
     }
 

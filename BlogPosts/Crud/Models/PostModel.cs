@@ -27,6 +27,7 @@ namespace Crud.Models
        // public string ImagePath { get; set; } //Temporarly here until I can get the ImageModel Method Working
         public virtual ICollection<ImageModel> Images { get; set; }
         public IEnumerable<HttpPostedFileBase> File { get; set; }
+        public DateTime Date { get; set; }
     }
 
     public class ImageModel
@@ -56,7 +57,8 @@ namespace Crud.Models
         public string Body { get; set; }
         public IEnumerable<HttpPostedFileBase> Files { get; set; }
         public List<ImageVM> Images { get; set; }
-  
+        public DateTime Date { get; set; }
+
     }
 }
 

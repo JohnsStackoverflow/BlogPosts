@@ -85,6 +85,7 @@ namespace Crud.Controllers
             // Map properties
             post.Heading = model.Heading;
             post.Body = model.Body;
+            post.Date = model.Date;
 
             foreach (HttpPostedFileBase file in model.Files)
             {

@@ -32,7 +32,7 @@ namespace Crud.Concrete
                     {
                         dbEntry.Heading = Post.Heading;
                         dbEntry.Body = Post.Body;
-                
+                        dbEntry.Date = Post.Date;
                     }
                 }
                 context.SaveChanges();
