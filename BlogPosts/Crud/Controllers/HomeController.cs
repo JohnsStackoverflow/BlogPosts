@@ -23,7 +23,19 @@ namespace Crud.Controllers
         }
         public ViewResult Display()
         {
-            return View(repository.Posts);
+            var posts = db.Posts.Select(d => new PostVM()
+            {
+                ID = d.ID,
+                Heading = d.Heading,
+                Body = d.Body,
+                Images = d.Images.Select(i => new ImageVM()
+                {
+                    Path = i.Path,
+                    DisplayName = i.DisplayName
+                }
+                              ).ToList()
+            }).ToList();
+            return View(posts);
         }
         public ViewResult PublicPostDisplay()
         {
@@ -85,7 +97,7 @@ namespace Crud.Controllers
                     file.SaveAs(path);
                     ImageModel image = new ImageModel()
                     {
-                        Path = path,
+                        Path = fileName,
                         DisplayName = displayName
                     };
                     post.Images.Add(image);
@@ -97,17 +109,19 @@ namespace Crud.Controllers
                 // delete the file from the server an remove from the database
             }
             repository.Save(post);
-            return RedirectToAction("display");
+            return RedirectToAction("PublicPostDisplay");
         }
         [HttpPost]
-        public ActionResult DeletePosts(int PostID)
+        public ActionResult DeletePosts(int ID)
         {
-            PostModel deletePost = repository.DeletePosts(PostID);
+
+            PostModel deletePost = repository.DeletePosts(ID);
             if (deletePost != null)
             {
                 TempData["message"] = string.Format("{0} was deleted", deletePost.Heading);
             }
-            return RedirectToAction("display");
+  
+            return RedirectToAction("PublicPostDisplay");
         }
 
     }

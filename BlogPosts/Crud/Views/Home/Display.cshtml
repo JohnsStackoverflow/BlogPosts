@@ -1,9 +1,22 @@
-﻿@model IEnumerable<Crud.Models.PostModel>
+﻿@model List<Crud.Models.PostVM>
 @{
     ViewBag.Title = "Index";
 }
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+
+@foreach (var p in Model)
+{
+    <h3>@p.Heading</h3>
+    <p>@p.Body</p>
+    foreach (var image in p.Images)
+    {
+        <img class="img-thumbnail" width="150" height="150" src="~/Images/@image.Path" />
+    }
+}
+
+
+
+
+
 
 

@@ -12,7 +12,6 @@ namespace Crud.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
-
         public IEnumerable<PostModel> Posts
         {
             get { return context.Posts; }
@@ -60,9 +59,11 @@ namespace Crud.Concrete
         public PostModel DeletePosts(int ID)
         {
             PostModel dbEntry = context.Posts.Find(ID);
+            ImageModel dbEntryForeign = context.Images.Find(ID);
             if (dbEntry != null)
             {
                 context.Posts.Remove(dbEntry);
+                context.Images.Remove(dbEntryForeign);
                 context.SaveChanges();
             }
             return dbEntry;

@@ -1,7 +1,53 @@
-﻿@model Crud.Models.PostModel
+﻿@model IEnumerable<Crud.Models.PostModel>
 @{
-    ViewBag.Title = "PublicPostDisplay";
+    ViewBag.Title = "Index";
 }
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 
-@Html.Partial("EditorTemplates/ImageVM")
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Heading)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+    
+    </tr>
 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-right">@item.ID</td>
+   
+            <td>
+                @Html.DisplayFor(modelItem => item.Heading)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+           </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new
+           {
+               item.ID
+           })|
+                @using (Html.BeginForm("DeletePosts", "Home"))
+                {
+                    @Html.Hidden("ID", item.ID)
+                    <input type="submit" value="Delete" />
+
+                }
+            </td>
+
+
+
+        </tr>
+    }
+
+</table>

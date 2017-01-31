@@ -8,10 +8,10 @@ namespace Crud.Abstract
 {
     public interface IRepository
     {
- 
         IEnumerable<PostModel> Posts { get; }
         void Save(PostModel posts);
-        PostModel DeletePosts(int PostID);
+        PostModel DeletePosts(int ID);
+       
 
     }
 }
